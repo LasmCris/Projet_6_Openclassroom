@@ -160,34 +160,12 @@ function sectionMediaTemplate (dataMedia) {
     iconeCoeur.classList.add("fa-solid", "fa-heart");
     lienCoeur.appendChild(iconeCoeur);
 
-    const asideMedia = document.createElement ("aside");
-    asideMedia.classList.add ("sectionMedia__comptabilité");
-    sectionMedia.appendChild (asideMedia);
-
-    const paraSommeDesLikes = document.createElement ("div");
-    paraSommeDesLikes.classList.add ("comptabilité__nbrLikes");
-    asideMedia.appendChild (paraSommeDesLikes);
-
-
-        const sommeNbrLikes = document.createElement("p");
-        sommeNbrLikes.classList.add("nbrLikes__somme");
-        paraSommeDesLikes.appendChild(sommeNbrLikes);
-
-        const iconeCoeurSommeLike = document.createElement("i");
-        iconeCoeurSommeLike.classList.add("fa-solid", "fa-heart");
-        paraSommeDesLikes.appendChild(iconeCoeurSommeLike);
-
-
-        
-
-    const paragraphePrix = document.createElement ("p");
-    paragraphePrix.innerText = `${price}€ / jour`;
-    paragraphePrix.classList.add("comptabilité__Prix");
-    asideMedia.appendChild (paragraphePrix);
+    
      
       return sectionMedia;
         
     }
+
 
     return { getUsersectionMediaDOM };
 }

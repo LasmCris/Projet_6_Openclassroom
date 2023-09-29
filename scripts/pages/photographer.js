@@ -50,13 +50,40 @@ async function init2() {
   // Récupère les datas des photographes
   const { photographer, media } = await getPhotographer();
   displayDataPagePhotographer(photographer, media);
+  
+  const sectionMedia = document.querySelector(".sectionMedia");
+
+  const asideMedia = document.createElement("aside");
+  asideMedia.classList.add("sectionMedia__comptabilité");
+  sectionMedia.appendChild(asideMedia);
+
+  const paraSommeDesLikes = document.createElement("div");
+  paraSommeDesLikes.classList.add("comptabilité__nbrLikes");
+  asideMedia.appendChild(paraSommeDesLikes);
+
+  const sommeNbrLikes = document.createElement("p");
+  sommeNbrLikes.classList.add("nbrLikes__somme");
+  paraSommeDesLikes.appendChild(sommeNbrLikes);
+
+  const iconeCoeurSommeLike = document.createElement("i");
+  iconeCoeurSommeLike.classList.add("fa-solid", "fa-heart");
+  paraSommeDesLikes.appendChild(iconeCoeurSommeLike);
+
+  const paragraphePrix = document.createElement("p");
+  paragraphePrix.innerText = `${photographer.price}€ / jour`;
+  paragraphePrix.classList.add("comptabilité__Prix");
+  asideMedia.appendChild(paragraphePrix);
+
+  trier();
 }
 
 init2();
 
 
+
+
 //Je m'assure que le code s'exécute après que la page HTML complète a été chargée. 
-document.addEventListener("DOMContentLoaded", function () {
+function trier () {
   //TRIS PAR POPULARITÉ
   //Selectionner le boutton de tris par popularités
   const boutonTrisParPop = document.querySelector(".btnTriParPopularite");
@@ -151,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //Je selectionne tous les éléments "<p class="divFigcap__likes">" (paragraphes likes)
   const paragrapheNbrLikes = document.querySelectorAll(".divFigcap__likes");
-  const arrayParagrapheNbrLikes = array.from(paragrapheNbrLikes);
+  const arrayParagrapheNbrLikes = Array.from(paragrapheNbrLikes);
 
   //J'Ajoute un gestionnaire d'événements de clic à chaque icône cœur
   arrayBoutonLikes.forEach((boutonLike, index) => {
@@ -197,7 +224,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-});
+};
 
 
 
