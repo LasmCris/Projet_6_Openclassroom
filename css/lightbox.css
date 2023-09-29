@@ -1,0 +1,91 @@
+
+.lightBox {
+    display: none;
+    position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+
+}
+
+
+/* Si on rajoute la class .show dans la class .lightBoxContent, ont doit avoir la modal qui s'affiche
+* Et inversement si on rettire, disparition
+*/
+.lightBox.show {
+    display: initial;
+}
+
+
+.close {
+    color: #901C1C;
+    font-size: 80px;
+    position: fixed;
+    right: 10px;
+    cursor: pointer;
+
+}
+
+.lightBoxNext, .lightBoxPrev {
+    width: 10%;
+    color: #901C1C;
+    font-size: 50px;
+    position:fixed;
+        top: 50%;
+        right: 0;
+    margin-top: -14px;
+    margin-right: 25px;
+
+    z-index: 11;
+    cursor: pointer;
+}
+
+.lightBoxPrev {
+        left: 0;
+    margin-top: -14px;
+    margin-left: 25px;
+}
+
+
+
+.lightBoxContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    max-width: 1200px; /*quelque soit la lageur de l'ecran, lightBoxcontent ne depassera pas les 1200px */
+    position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+}
+
+
+.lightBoxContent img {
+    
+    height: 80%;
+    width: 80%;
+    object-fit: cover;
+}
+
+
+.lightBoxContent__TitreMedia {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
