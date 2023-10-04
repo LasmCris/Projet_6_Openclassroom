@@ -34,8 +34,6 @@ async function displayDataPagePhotographer(photographe, photoMedia) {
   const userEncartDOM = photographerEncartEtTrie.getuserEncartDOM();
   photographerPage.appendChild(userEncartDOM);
 
-  // const sectionTri = sectionTriTemplate();
-  // photographerPage.appendChild(sectionTri);
 
   photoMedia.forEach((objet) => {
     const photographerSectionMedia = sectionMediaTemplate(objet);
@@ -180,50 +178,57 @@ function trier () {
   const paragrapheNbrLikes = document.querySelectorAll(".divFigcap__likes");
   const arrayParagrapheNbrLikes = Array.from(paragrapheNbrLikes);
 
-  //J'Ajoute un gestionnaire d'événements de clic à chaque icône cœur
+  // Je modifie le code pour gérer l'ajout et la suppression de likes
   arrayBoutonLikes.forEach((boutonLike, index) => {
+    let isLiked = false; // Variable pour suivre l'état du bouton
+
     boutonLike.addEventListener("click", (e) => {
       e.preventDefault(); // J'empêche le lien de suivre son URL
 
-      //Je sélectionne le paragraphe "divFigcap__likes" associé à l'icône cœur cliquée
+      // Je sélectionne le paragraphe "divFigcap__likes" associé à l'icône cœur cliquée
       const paragrapheNbrLikes =
         boutonLike.parentElement.querySelector(".divFigcap__likes");
 
-      //J'obtient le nombre actuel de likes ainsi
-      let nbrDeLikesActuel = parseInt(
-        arrayParagrapheNbrLikes[index].textContent
-      );
+      // J'obtiens le nombre actuel de likes depuis le paragraphe
+      let nbrDeLikesActuel = parseInt(paragrapheNbrLikes.textContent);
 
-      //Incrementation du nombre de likes
-      nbrDeLikesActuel++;
+      // Si le bouton est déjà liké, je retire le like
+      if (isLiked) {
+        nbrDeLikesActuel--;
+        isLiked = false;
+      } else {
+        // Sinon, j'ajoute un like
+        nbrDeLikesActuel++;
+        isLiked = true;
+      }
 
-      //Je mets à jour le contenu du paragraphe avec le nouveau nombre de likes
-      arrayParagrapheNbrLikes[index].textContent = nbrDeLikesActuel;
+      // Je mets à jour le contenu du paragraphe avec le nouveau nombre de likes
+      paragrapheNbrLikes.textContent = nbrDeLikesActuel;
+
+      //SOMME TOTALE DE LIKES
+      //Je reutilise la constante arrayParagrapheNbrLikes qui un array de toutes les balises <p> qui
+      //contiennent les nbre de likes
+
+      arrayParagrapheNbrLikes;
+
+      // Calculez la somme totale des likes
+      let totalLikes = 0;
+
+      arrayParagrapheNbrLikes.forEach((likesElement) => {
+        const likes = parseInt(likesElement.textContent);
+        totalLikes += likes;
+      });
+
+      // Sélection du paragraphe où on va afficher la somme totale
+      const paragrapheDesSommesDeLikes =
+        document.querySelector(".nbrLikes__somme");
+
+      //Mise à jour du contenu du paragraphe avec la somme totale
+      paragrapheDesSommesDeLikes.textContent = totalLikes;
     });
   });
 
-  //SOMME TOTALE DE LIKES
-  //Je reutilise la constante arrayParagrapheNbrLikes qui un array de toutes les balises <p> qui
-  //contiennent les nbre de likes
-
-  arrayParagrapheNbrLikes;
-
-  // Calculez la somme totale des likes
-  let totalLikes = 0;
-
-  arrayParagrapheNbrLikes.forEach((likesElement) => {
-    const likes = parseInt(likesElement.textContent);
-    totalLikes += likes;
-  });
-
-  // Sélection du paragraphe où on va afficher la somme totale
-  const paragrapheDesSommesDeLikes = document.querySelector(".nbrLikes__somme");
-
-  //Mise à jour du contenu du paragraphe avec la somme totale
-  paragrapheDesSommesDeLikes.textContent = totalLikes;
-
-
-
+ 
 };
 
 

@@ -37,54 +37,78 @@ function encartEtTriTemplate(dataPhotographe) {
     divPhoto.appendChild(photoPhotographe);
     photoPhotographe.setAttribute("src", picture);
 
-
     // Sélectionnez la balise section avec la classe sectionTris
     const sectionTris = document.querySelector(".sectionTris");
 
-    // Créez les éléments HTML nécessaires
-    const nav = document.createElement("nav");
+    // Création du lien "Trier par"
+    const trierParLink = document.createElement("a");
+    trierParLink.className = "trierPar";
+    trierParLink.textContent = "Trier par:";
+    sectionTris.appendChild(trierParLink);
+
+    // Création de la div "menuTri"
+    const menuTriDiv = document.createElement("div");
+    menuTriDiv.className = "menuTri";
+
+    // Création de la liste non ordonnée (ul)
     const ul = document.createElement("ul");
-    const liDeroulant = document.createElement("li");
-    const aDeroulant = document.createElement("a");
-    const ulSous = document.createElement("ul");
+
+    // Création du premier élément de liste
     const liPopularite = document.createElement("li");
-    const liDate = document.createElement("li");
-    const liTitre = document.createElement("li");
     const aPopularite = document.createElement("a");
-    const aDate = document.createElement("a");
-    const aTitre = document.createElement("a");
-
-    // Ajoutez des classes aux éléments
-    sectionTris.classList.add("sectionTris");
-    liDeroulant.classList.add("deroulant");
-    ulSous.classList.add("sous");
-    aPopularite.classList.add("btnTriParPopularite");
-    aDate.classList.add("btnTrieParDate");
-    aTitre.classList.add("btnTrieParTitre");
-
-    // Ajoutez du texte aux éléments a
-    aDeroulant.textContent = "Trier par \u00A0 :";
-    aPopularite.textContent = "Popularité";
-    aDate.textContent = "Date";
-    aTitre.textContent = "Titre";
-
-    // Ajoutez les éléments HTML dans la structure appropriée
-    ul.appendChild(liDeroulant);
-    liDeroulant.appendChild(aDeroulant);
-    liDeroulant.appendChild(ulSous);
-    ulSous.appendChild(liPopularite);
-    ulSous.appendChild(liDate);
-    ulSous.appendChild(liTitre);
+    aPopularite.className = "btnTriParPopularite";
+    aPopularite.href = "#";
+    aPopularite.textContent = "Popularité ";
+    const span1 = document.createElement("span");
+    span1.className = "triSymbol";
+    span1.textContent = "▲";
+    aPopularite.appendChild(span1);
     liPopularite.appendChild(aPopularite);
+
+    // Création du deuxième élément de liste
+    const liDate = document.createElement("li");
+    const aDate = document.createElement("a");
+    aDate.className = "btnTrieParDate";
+    aDate.href = "#";
+    aDate.textContent = "Date ";
+    const span2 = document.createElement("span");
+    span2.className = "triSymbol";
+    span2.textContent = "▲";
+    aDate.appendChild(span2);
     liDate.appendChild(aDate);
+
+    // Création du troisième élément de liste
+    const liTitre = document.createElement("li");
+    const aTitre = document.createElement("a");
+    aTitre.className = "btnTrieParTitre";
+    aTitre.href = "#";
+    aTitre.textContent = "Titre ";
+    const span3 = document.createElement("span");
+    span3.className = "triSymbol";
+    span3.textContent = "▲";
+    aTitre.appendChild(span3);
     liTitre.appendChild(aTitre);
-    nav.appendChild(ul);
-    sectionTris.appendChild(nav);
+
+    // Ajout des éléments à la liste non ordonnée
+    ul.appendChild(liPopularite);
+    ul.appendChild(liDate);
+    ul.appendChild(liTitre);
+
+    // Ajout de la liste à la div "menuTri"
+    menuTriDiv.appendChild(ul);
+
+    // Ajout de la div "menuTri" à la section
+    sectionTris.appendChild(menuTriDiv);
 
     return sectionInfosPhotographe;
   }
   return {getuserEncartDOM };
 }
+
+
+
+
+
 
 function sectionMediaTemplate (dataMedia) {
     const {id, photographerId, title, image, video, likes, date, price} = dataMedia;

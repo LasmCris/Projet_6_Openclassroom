@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: DM Sans;
 }
 
 body {
@@ -118,78 +119,86 @@ main {
   border-radius: 50%;
 }
 
+
+
+
+
+
+
+
+
+
+
 .sectionTris {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  height: 62px;
-  margin: 0px 2px 90px 0px;
-  /* border: 2px solid rgb(255, 0, 115); */
+    
 }
 
-nav {
-  width: 15%;
-  height: 20px;
-  background-color: white;
-  position: sticky;
-  top: 0px;
-}
+.trierPar {
 
-nav ul {
-  list-style-type: none;
-  display: flex;
-  margin: 0;
-}
-
-nav ul li {
-  flex: 1 1 auto;
-  position: relative;
-}
-
-nav a {
-  display: block;
-  text-decoration: none;
-  color: black;
-  border-bottom: 2px solid transparent;
-  padding: 10px 0px;
-}
-
-nav a:hover {
-  color: orange;
-  border-bottom: 2px solid gold;
-}
-
-.sous {
-  display: none;
-  background-color: #901c1c;
-  position: absolute;
-  width: 100%;
-  z-index: 1000;
-}
-
-nav > ul li:hover .sous {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.sous li {
-  flex: 1 1;
-  text-align: left;
-  width: 100%;
-}
-
-.sous a {
-  padding: 10px;
-  border-bottom: none;
+  margin-right: 40px;
   cursor: pointer;
 }
 
-.sous a:hover {
-  border-bottom: none;
-  background-color: RGBa(200, 200, 200, 0.1);
+.menuTri.show3 {
+  display: initial;
 }
+
+.menuTri {
+  /* display: none; A DECOMENTER EN PRODUCTION, JE COMMENTE POUR POUVOIR MONTRER ET 
+  EXPLIQUER LE BEUG */
+  background-color: #901C1C;
+  width: 125px;
+}
+
+.menuTri ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 8px;
+}
+
+
+.menuTri ul li {
+  cursor: pointer;
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid white;
+}
+
+.menuTri ul li a {
+  font-family: DM Sans;
+  font-size: 12px;
+  color: white;
+  text-decoration: none;
+}
+
+.triSymbol {
+  color: white;
+  float: right;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+
+.menuTri ul li:last-child {
+   border-bottom: none; /* Supprimer la ligne sous le dernier élément */
+}
+
+
+.menuTri ul li:hover .triSymbol {
+   opacity: 1; /* Afficher le symbole au survol */
+}
+
+
+
+
+
+
+
+
+
+
+
 
 .sectionMedia {
   position: relative;
@@ -298,12 +307,14 @@ nav > ul li:hover .sous {
   border: 2px solid gray;
   margin: 2px;
   height: 40px;
-  width: 300px;
+  width: 200px;
   background-color: #db8876;
   position: fixed;
   bottom: 0;
   right: 0;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .comptabilité__nbrLikes {
@@ -316,6 +327,7 @@ nav > ul li:hover .sous {
 }
 
 .nbrLikes__somme {
+  margin-right: 10px;
 }
 
 .nbrLikes__iconeCoeur.fa-solid {
@@ -324,7 +336,7 @@ nav > ul li:hover .sous {
 }
 
 .comptabilité__Prix {
-  /* border: 2px solid gray; */
-  margin: 2px;
+  margin-right: 10px;
   width: 50%;
+  text-align: right;
 }
