@@ -37,7 +37,7 @@ function encartEtTriTemplate(dataPhotographe) {
     divPhoto.appendChild(photoPhotographe);
     photoPhotographe.setAttribute("src", picture);
 
-    // Sélectionnez la balise section avec la classe sectionTris
+    // Je Sélectionne la balise section avec la classe sectionTris
     const sectionTris = document.querySelector(".sectionTris");
 
     // Création du lien "Trier par"

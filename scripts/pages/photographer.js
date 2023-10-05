@@ -83,11 +83,11 @@ init2();
 //Je m'assure que le code s'exécute après que la page HTML complète a été chargée. 
 function trier () {
   //TRIS PAR POPULARITÉ
-  //Selectionner le boutton de tris par popularités
+  //Je Selectionne le boutton de tris par popularités
   const boutonTrisParPop = document.querySelector(".btnTriParPopularite");
   console.log(boutonTrisParPop);
 
-  // Sélectionnez les éléments contenant les photos et leurs likes
+  // Je Sélectionne les éléments contenant les photos et leurs likes
   const tousMediaGenerer = document.querySelectorAll(".sectionMedia__article");
 
   // Ajout d'un eventListener au lien
@@ -105,7 +105,7 @@ function trier () {
       return likesB - likesA; //pour un tri décroissant
     });
 
-    // Réorganisez les articles dans leur parent
+    // Je Réorganise les articles dans leur parent
     const parentDesArticlePhotos = document.querySelector(".sectionMedia");
     arrayMediaGenerer.forEach((article) => {
       parentDesArticlePhotos.appendChild(article);
@@ -131,7 +131,7 @@ function trier () {
       return dateA - dateB; //Tri par ordre croissant de date de publication
     });
 
-    // Réorganisez les articles dans leur parent
+    // Je Réorganise les articles dans leur parent
     const parentDesArticlePhotos = document.querySelector(".sectionMedia");
     arrayMediaGenerer.forEach((article) => {
       parentDesArticlePhotos.appendChild(article);
@@ -139,7 +139,7 @@ function trier () {
   });
 
   // TRI PAR ORDRE ALPHABETIQUE DE TITRE
-  // Sélectionnez le bouton de tri.
+  // Je Sélectionne le bouton de tri.
   const btnTriDesTitreDeMedia = document.querySelector(".btnTrieParTitre");
   console.log(btnTriDesTitreDeMedia);
 
@@ -149,7 +149,7 @@ function trier () {
     // Je Convertie la NodeList en tableau pour pouvoir trier les articles
     const arrayMediaGenerer = Array.from(tousMediaGenerer);
 
-    // Triez les articles en fonction du nom de la photo
+    // Je trie les articles en fonction du nom de la photo
     arrayMediaGenerer.sort((a, b) => {
       const nomA = a
         .querySelector(".figcaption__titreMed")
@@ -161,7 +161,7 @@ function trier () {
       return nomA.localeCompare(nomB); // Tri alphabétique des noms de photo
     });
 
-    // Réorganisez les articles dans leur parent
+    // Je Réorganise les articles dans leur parent
     const parentDesArticlePhotos = document.querySelector(".sectionMedia");
     arrayMediaGenerer.forEach((article) => {
       parentDesArticlePhotos.appendChild(article);
@@ -211,7 +211,7 @@ function trier () {
 
       arrayParagrapheNbrLikes;
 
-      // Calculez la somme totale des likes
+      // je Calcule la somme totale des likes
       let totalLikes = 0;
 
       arrayParagrapheNbrLikes.forEach((likesElement) => {
