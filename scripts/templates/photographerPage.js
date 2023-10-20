@@ -37,68 +37,90 @@ function encartEtTriTemplate(dataPhotographe) {
     divPhoto.appendChild(photoPhotographe);
     photoPhotographe.setAttribute("src", picture);
 
-    // Je Sélectionne la balise section avec la classe sectionTris
-    const sectionTris = document.querySelector(".sectionTris");
+// Je Sélectionne la balise section avec la classe sectionTris
+const sectionTris = document.querySelector(".sectionTris");
 
-    // Création du lien "Trier par"
-    const trierParLink = document.createElement("a");
-    trierParLink.className = "trierPar";
-    trierParLink.textContent = "Trier par:";
-    sectionTris.appendChild(trierParLink);
+// Création du lien "Trier par"
+const trierParLink = document.createElement("a");
+trierParLink.className = "trierPar";
+trierParLink.textContent = "Trier par:";
+sectionTris.appendChild(trierParLink);
 
-    // Création de la div "menuTri"
-    const menuTriDiv = document.createElement("div");
-    menuTriDiv.className = "menuTri";
+// Création de la div "menuTri"
+const menuTriDiv = document.createElement("div");
+menuTriDiv.className = "menuTri";
 
-    // Création de la liste non ordonnée (ul)
-    const ul = document.createElement("ul");
+// Création de la liste non ordonnée (ul)
+const ul = document.createElement("ul");
 
-    // Création du premier élément de liste
-    const liPopularite = document.createElement("li");
-    const aPopularite = document.createElement("a");
-    aPopularite.className = "btnTriParPopularite";
-    aPopularite.href = "#";
-    aPopularite.textContent = "Popularité ";
-    const span1 = document.createElement("span");
-    span1.className = "triSymbol";
-    span1.textContent = "▲";
-    aPopularite.appendChild(span1);
-    liPopularite.appendChild(aPopularite);
+// Création des éléments de liste
+const li1 = document.createElement("li");
+li1.classList.add ("active");
+const a1 = document.createElement("a");
+a1.className = "btnTriPar";
+a1.classList.add("btnTriParPopularite");
+a1.href = "#";
+a1.textContent = "Popularité";
+li1.appendChild(a1);
 
-    // Création du deuxième élément de liste
-    const liDate = document.createElement("li");
-    const aDate = document.createElement("a");
-    aDate.className = "btnTrieParDate";
-    aDate.href = "#";
-    aDate.textContent = "Date ";
-    const span2 = document.createElement("span");
-    span2.className = "triSymbol";
-    span2.textContent = "▲";
-    aDate.appendChild(span2);
-    liDate.appendChild(aDate);
+const li2 = document.createElement("li");
+const a2 = document.createElement("a");
+a2.className = "btnTriPar";
+a2.classList.add("btnTrieParDate");
+a2.href = "#";
+a2.textContent = "Date";
+li2.appendChild(a2);
 
-    // Création du troisième élément de liste
-    const liTitre = document.createElement("li");
-    const aTitre = document.createElement("a");
-    aTitre.className = "btnTrieParTitre";
-    aTitre.href = "#";
-    aTitre.textContent = "Titre ";
-    const span3 = document.createElement("span");
-    span3.className = "triSymbol";
-    span3.textContent = "▲";
-    aTitre.appendChild(span3);
-    liTitre.appendChild(aTitre);
+const li3 = document.createElement("li");
+const a3 = document.createElement("a");
+a3.className = "btnTriPar";
+a3.classList.add("btnTrieParTitre");
+a3.href = "#";
+a3.textContent = "Nom";
+li3.appendChild(a3);
 
-    // Ajout des éléments à la liste non ordonnée
-    ul.appendChild(liPopularite);
-    ul.appendChild(liDate);
-    ul.appendChild(liTitre);
+// Ajout des éléments à la liste non ordonnée
+ul.appendChild(li1);
+ul.appendChild(li2);
+ul.appendChild(li3);
 
-    // Ajout de la liste à la div "menuTri"
-    menuTriDiv.appendChild(ul);
+// Ajout de la liste à la div "menuTri"
+menuTriDiv.appendChild(document.createElement("span"));
+menuTriDiv.appendChild(ul);
 
-    // Ajout de la div "menuTri" à la section
-    sectionTris.appendChild(menuTriDiv);
+// Ajout de la div "menuTri" à la section
+sectionTris.appendChild(menuTriDiv);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Cacher le menu au chargement initial
+    menuTriDiv.style.display = "none";
+
+    // Ajouter un événement pour afficher / masquer le menu au clic
+    trierParLink.addEventListener("click", function () {
+      if (menuTriDiv.style.display === "none") {
+        menuTriDiv.style.display = "block";
+      } else {
+        menuTriDiv.style.display = "none";
+      }
+    });
+
+    // Ajout de l'attribut ARIA pour décrire la sectionInfosPhotographe
+    sectionInfosPhotographe.setAttribute(
+      "aria-label",
+      `Informations sur le photographe ${name}`
+    );
 
     return sectionInfosPhotographe;
   }
@@ -113,7 +135,7 @@ function encartEtTriTemplate(dataPhotographe) {
 function sectionMediaTemplate (dataMedia) {
     const {id, photographerId, title, image, video, likes, date, price} = dataMedia;
 
-    console.log(image, video);
+    // console.log(image, video);
 
     function getUsersectionMediaDOM() {
     const sectionMedia = document.querySelector (".sectionMedia");
@@ -136,19 +158,24 @@ function sectionMediaTemplate (dataMedia) {
     //Pour creer l'element correspondand en consequence.
     if (video === undefined) {
       let pathMedia = `./assets/samplePhotos/${image}`;
-        MediaEnQuestion = document.createElement("img");
-        MediaEnQuestion.src = pathMedia;
-        lienMedia.href = pathMedia;
+      MediaEnQuestion = document.createElement("img");
+      MediaEnQuestion.src = pathMedia;
+      lienMedia.href = pathMedia;
+
+      // Ajout d'un attribut ARIA pour décrire l'image
+      MediaEnQuestion.setAttribute("alt", "Description de l'image");
     } 
     else {
       let pathMedia = `./assets/samplePhotos/${video}`;
       MediaEnQuestion = document.createElement("video");
-      MediaEnQuestion.setAttribute("controls", "true");
-          BaliseSourceVideo = document.createElement("source");
-          MediaEnQuestion.appendChild(BaliseSourceVideo);
-          lienMedia.href = pathMedia;
-          BaliseSourceVideo.src = pathMedia;
-          BaliseSourceVideo.type = "video/mp4";
+      BaliseSourceVideo = document.createElement("source");
+      MediaEnQuestion.appendChild(BaliseSourceVideo);
+      lienMedia.href = pathMedia;
+      BaliseSourceVideo.src = pathMedia;
+      BaliseSourceVideo.type = "video/mp4";
+
+      // Ajout d'un attribut ARIA pour décrire la vidéo
+      MediaEnQuestion.setAttribute("aria-label", "Description de la vidéo");
     }
         lienMedia.appendChild(MediaEnQuestion);
         MediaEnQuestion.classList.add ("lienMedia__media");

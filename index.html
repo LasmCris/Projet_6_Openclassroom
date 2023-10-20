@@ -9,20 +9,20 @@
   </head>
   <body>
     <header>
-        <img src="assets/images/logo.png" class="logo" alt="fisheye logo"/>
+        <!-- Ajout de l'attribut aria-label pour donner un libellé au logo -->
+        <img src="assets/images/logo.png" class="logo" alt="fisheye logo" aria-label="Logo de Fisheye Photography"/>
+
+        <!-- Utilisation d'un élément de titre pour indiquer le titre de la page -->
         <h1>Nos photographes</h1>
     </header>
     <main id="main">
-        <section class="photographer_section">
-
-
-
-
-
+        <section class="photographer_section" role="region" aria-label="Liste des photographes">
+            
         </section>
     </main>
     <script src="scripts/templates/photographer.js"></script>
     <script src="scripts/pages/index.js"></script>
-  </body>
+</body>
+
 </html>
 

@@ -73,6 +73,14 @@
 }
 
 
+.lightBoxContent video {
+    
+    height: 420px;
+    width: 600px;
+    object-fit: cover;
+}
+
+
 .lightBoxContent__TitreMedia {
 
 }

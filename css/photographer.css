@@ -40,8 +40,8 @@ main {
   display: flex;
   justify-content: space-between;
   background-color: #fafafa;
-  height: 300px;
-  margin: 34px 2px 10px 2px;
+  height: 198px;
+  margin: 34px 2px 55px 0px;
   /* border: 2px solid blue; */
 }
 
@@ -90,12 +90,12 @@ main {
 }
 
 .divFormulaire__button {
-  font-size: 16px;
+  font-size: 13px;
   font-weight: bold;
   color: white;
   padding: 11px;
-  width: 140px;
-  height: 55px;
+  width: 128px;
+  height: 45px;
   border: none;
   background-color: #901c1c;
   border-radius: 5px;
@@ -122,72 +122,100 @@ main {
 
 
 
-
-
-
-
-
-
-
 .sectionTris {
   display: flex;
-    
+  align-items: center;
 }
 
 .trierPar {
-
-  margin-right: 40px;
+  margin-right: 10px;
+  font-size: 13px;
   cursor: pointer;
 }
 
-.menuTri.show3 {
-  display: initial;
-}
-
-.menuTri {
-  /* display: none; A DECOMENTER EN PRODUCTION, JE COMMENTE POUR POUVOIR MONTRER ET 
-  EXPLIQUER LE BEUG */
-  background-color: #901C1C;
-  width: 125px;
-}
-
-.menuTri ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 8px;
-}
-
-
-.menuTri ul li {
-  cursor: pointer;
-  padding: 10px;
-  text-align: left;
-  border-bottom: 1px solid white;
-}
-
-.menuTri ul li a {
-  font-family: DM Sans;
-  font-size: 12px;
-  color: white;
+.btnTriPar {
+  color: inherit;
   text-decoration: none;
 }
 
-.triSymbol {
+
+
+.menuTri {
+  position: relative;
+  border-radius: 5px;
+  background: #901c1c;;
   color: white;
-  float: right;
-  opacity: 0;
-  transition: opacity 0.3s;
+  display: flex;
+  padding: 1rem;
+  width: 200px;
+  font-size: 13px;
+}
+
+.menuTri.open:after {
+  content: "\f077";
+}
+
+.menuTri:after {
+  content: "\f078";
+  font-family: FontAwesome;
+  font-weight: bold;
+  position: absolute; 
+  right: 1rem;
+  width: 1rem;
+  height: 1rem;
+  top: 1rem;
+}
+
+.menuTri ul {
+  display: none;
+}
+
+.menuTri span {
+  padding-right: 2rem;
+  font-size: 13px;
+  font-family: DM Sans;
 }
 
 
-.menuTri ul li:last-child {
-   border-bottom: none; /* Supprimer la ligne sous le dernier élément */
+
+.menuTri.open {
+  display: flex;
+  justify-content: center;
 }
 
 
-.menuTri ul li:hover .triSymbol {
-   opacity: 1; /* Afficher le symbole au survol */
+.menuTri.open span {
+  display: none;
 }
+
+
+.menuTri.open ul {
+  display: flex;
+  flex-direction: column;
+}
+
+.menuTri.open ul li {
+  border-bottom: 1px solid white;
+  padding: 15px 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+
+
+
+.menuTri.open ul li:first-child {
+  padding-top: 0;
+}
+
+.menuTri.open ul li:last-child {
+  border-bottom: unset;
+  padding-bottom: 0;
+}
+
+
+
+
 
 
 
@@ -250,13 +278,14 @@ main {
 
 .figure__figCaption {
   /* border: 2px solid gray; */
+  font-size: 12px;
   margin: 2px;
   display: flex;
 }
 
 .figcaption__titreMed {
   font-family: DM Sans;
-  font-size: 15px;
+
   letter-spacing: 0em;
   text-align: left;
   /* border: 2px solid gray; */
@@ -284,7 +313,7 @@ main {
   margin: 2px;
   color: #901c1c;
   font-family: DM Sans;
-  font-size: 15px;
+
   letter-spacing: 0em;
   text-align: left;
 }
@@ -298,16 +327,14 @@ main {
 .fa-solid {
   color: #901c1c;
   font-family: DM Sans;
-  font-size: 15px;
   letter-spacing: 0em;
   text-align: left;
 }
 
 .sectionMedia__comptabilité {
-  border: 2px solid gray;
   margin: 2px;
-  height: 40px;
-  width: 200px;
+  height: 32px;
+  width: 165px;
   background-color: #db8876;
   position: fixed;
   bottom: 0;
@@ -315,6 +342,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 12px;
 }
 
 .comptabilité__nbrLikes {
@@ -330,9 +358,9 @@ main {
   margin-right: 10px;
 }
 
-.nbrLikes__iconeCoeur.fa-solid {
+.comptabilité__nbrLikes .fa-solid {
   color: black;
-  font-size: 10px;
+  font-size: 11px;
 }
 
 .comptabilité__Prix {

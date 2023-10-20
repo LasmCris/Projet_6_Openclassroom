@@ -1,5 +1,5 @@
 //Mettre le code JavaScript lié à la page photographer.html
- async function getPhotographer() {
+async function getPhotographer() {
   const reponse = await fetch("./data/photographers.json");
   const infosPhotographe = await reponse.json();
 
@@ -15,25 +15,30 @@
 
   //la Constante media contient un nouveau tableau, contitué d'élements objets
   //qui respectent chacun la condition fixé par la filter()
+  // Filtrer les médias en fonction de l'ID du photographe
   const media = infosPhotographe.media.filter(
     (p) => p.photographerId == idPhotographer
   );
 
-  console.log(media[0])
+  // Obtenir les likes de chaque média, sous forme d'array
+  const likesArray = media.map((m) => m.likes);
 
-  return { photographer: PhotographeElu, media };
+  
+
+  // console.log(media[0]);
+
+  return { photographer: PhotographeElu, media, likesArray };
 }
 
 
 async function displayDataPagePhotographer(photographe, photoMedia) {
   // console.log(photographe, photoMedia);
-  
+
   const photographerPage = document.querySelector("main");
 
   const photographerEncartEtTrie = encartEtTriTemplate(photographe);
   const userEncartDOM = photographerEncartEtTrie.getuserEncartDOM();
   photographerPage.appendChild(userEncartDOM);
-
 
   photoMedia.forEach((objet) => {
     const photographerSectionMedia = sectionMediaTemplate(objet);
@@ -43,12 +48,11 @@ async function displayDataPagePhotographer(photographe, photoMedia) {
   });
 }
 
-
 async function init2() {
   // Récupère les datas des photographes
-  const { photographer, media } = await getPhotographer();
+  const { photographer, media, likesArray } = await getPhotographer();
   displayDataPagePhotographer(photographer, media);
-  
+
   const sectionMedia = document.querySelector(".sectionMedia");
 
   const asideMedia = document.createElement("aside");
@@ -72,20 +76,74 @@ async function init2() {
   paragraphePrix.classList.add("comptabilité__Prix");
   asideMedia.appendChild(paragraphePrix);
 
+  // Sélection du paragraphe où on va afficher la somme totale
+  const paragrapheDesSommesDeLikes = document.querySelector(".nbrLikes__somme");
+
+  // Je Sélectionne tous les éléments a (icônes cœur)
+  const boutonLikes = document.querySelectorAll(".divFigcap__lienCoeur");
+  const arrayBoutonLikes = Array.from(boutonLikes);
+
+  // Initialisation du tableau de likes, je fais plutot réfférence a l'array
+  // Renvoyé par la fonction getPhotographer
+  likesArray;
+
+  // Fonction pour calculer la somme totale des likes
+  function calculateTotalLikes() {
+    let totalLikes = 0;
+    likesArray.forEach((likesElement) => {
+      totalLikes += likesElement;
+    });
+    return totalLikes;
+  }
+
+  // Mise à jour de la somme totale des likes au chargement de la page
+  paragrapheDesSommesDeLikes.textContent = calculateTotalLikes();
+
+  // Je modifie le code pour gérer l'ajout et la suppression de likes
+  arrayBoutonLikes.forEach((boutonLike, index) => {
+    let isLiked = false; // Variable pour suivre l'état du bouton
+
+    boutonLike.addEventListener("click", (e) => {
+      e.preventDefault(); // J'empêche le lien de suivre son URL
+
+      // Je sélectionne le paragraphe "divFigcap__likes" associé à l'icône cœur cliquée
+      const paragrapheNbrLikes =
+        boutonLike.parentElement.querySelector(".divFigcap__likes");
+
+      // J'obtiens le nombre actuel de likes depuis le paragraphe
+      let nbrDeLikesActuel = parseInt(paragrapheNbrLikes.textContent);
+
+      // Si le bouton est déjà liké, je retire le like
+      if (isLiked) {
+        nbrDeLikesActuel--;
+        isLiked = false;
+        likesArray[index]--; // Décrémentation du like dans le tableau
+      } else {
+        // Sinon, j'ajoute un like
+        nbrDeLikesActuel++;
+        isLiked = true;
+        likesArray[index]++; // Incrémentation du like dans le tableau
+      }
+
+      // Je mets à jour le contenu du paragraphe avec le nouveau nombre de likes
+      paragrapheNbrLikes.textContent = nbrDeLikesActuel;
+
+      // Mise à jour de la somme totale des likes en temps réel
+      paragrapheDesSommesDeLikes.textContent = calculateTotalLikes();
+    });
+  });
+
   trier();
 }
 
 init2();
 
 
-
-
-//Je m'assure que le code s'exécute après que la page HTML complète a été chargée. 
-function trier () {
+function trier() {
   //TRIS PAR POPULARITÉ
   //Je Selectionne le boutton de tris par popularités
   const boutonTrisParPop = document.querySelector(".btnTriParPopularite");
-  console.log(boutonTrisParPop);
+  // console.log(boutonTrisParPop);
 
   // Je Sélectionne les éléments contenant les photos et leurs likes
   const tousMediaGenerer = document.querySelectorAll(".sectionMedia__article");
@@ -115,7 +173,7 @@ function trier () {
   //TRI PAR DATE DE PUBLICATION
   // Sélection du bouton de tri
   const btnTriParDateDePub = document.querySelector(".btnTrieParDate");
-  console.log(btnTriParDateDePub);
+  // console.log(btnTriParDateDePub);
 
   btnTriParDateDePub.addEventListener("click", (e) => {
     e.preventDefault;
@@ -141,7 +199,7 @@ function trier () {
   // TRI PAR ORDRE ALPHABETIQUE DE TITRE
   // Je Sélectionne le bouton de tri.
   const btnTriDesTitreDeMedia = document.querySelector(".btnTrieParTitre");
-  console.log(btnTriDesTitreDeMedia);
+  // console.log(btnTriDesTitreDeMedia);
 
   btnTriDesTitreDeMedia.addEventListener("click", (e) => {
     e.preventDefault;
@@ -168,70 +226,40 @@ function trier () {
     });
   });
 
-  //INCREMENTATION DES LIKES
-  //Je Sélectionne tous les éléments a (icônes cœur)
-  const boutonLikes = document.querySelectorAll(".divFigcap__lienCoeur");
-  const arrayBoutonLikes = Array.from(boutonLikes);
-  console.log(arrayBoutonLikes);
+  //GESTION DU TOGGLE D'AFFICHAGE DU MENU DE TRI
+    const dropdown = document.querySelector(".menuTri");
 
-  //Je selectionne tous les éléments "<p class="divFigcap__likes">" (paragraphes likes)
-  const paragrapheNbrLikes = document.querySelectorAll(".divFigcap__likes");
-  const arrayParagrapheNbrLikes = Array.from(paragrapheNbrLikes);
+    const dropdownSpan = dropdown.querySelector(".menuTri span");
 
-  // Je modifie le code pour gérer l'ajout et la suppression de likes
-  arrayBoutonLikes.forEach((boutonLike, index) => {
-    let isLiked = false; // Variable pour suivre l'état du bouton
+    const showDropdownLabel = () => {
+      dropdownSpan.innerText = dropdown.querySelector("ul li.active").innerText;
+    };
 
-    boutonLike.addEventListener("click", (e) => {
-      e.preventDefault(); // J'empêche le lien de suivre son URL
+    const swap = (node1, node2) => {
+      const afterNode2 = node2.nextElementSibling;
+      const parent = node2.parentNode;
+      node1.replaceWith(node2);
+      parent.insertBefore(node1, afterNode2);
+    };
 
-      // Je sélectionne le paragraphe "divFigcap__likes" associé à l'icône cœur cliquée
-      const paragrapheNbrLikes =
-        boutonLike.parentElement.querySelector(".divFigcap__likes");
+    showDropdownLabel();
 
-      // J'obtiens le nombre actuel de likes depuis le paragraphe
-      let nbrDeLikesActuel = parseInt(paragrapheNbrLikes.textContent);
-
-      // Si le bouton est déjà liké, je retire le like
-      if (isLiked) {
-        nbrDeLikesActuel--;
-        isLiked = false;
-      } else {
-        // Sinon, j'ajoute un like
-        nbrDeLikesActuel++;
-        isLiked = true;
-      }
-
-      // Je mets à jour le contenu du paragraphe avec le nouveau nombre de likes
-      paragrapheNbrLikes.textContent = nbrDeLikesActuel;
-
-      //SOMME TOTALE DE LIKES
-      //Je reutilise la constante arrayParagrapheNbrLikes qui un array de toutes les balises <p> qui
-      //contiennent les nbre de likes
-
-      arrayParagrapheNbrLikes;
-
-      // je Calcule la somme totale des likes
-      let totalLikes = 0;
-
-      arrayParagrapheNbrLikes.forEach((likesElement) => {
-        const likes = parseInt(likesElement.textContent);
-        totalLikes += likes;
-      });
-
-      // Sélection du paragraphe où on va afficher la somme totale
-      const paragrapheDesSommesDeLikes =
-        document.querySelector(".nbrLikes__somme");
-
-      //Mise à jour du contenu du paragraphe avec la somme totale
-      paragrapheDesSommesDeLikes.textContent = totalLikes;
+    dropdown.addEventListener("click", () => {
+      dropdown.classList.toggle("open");
     });
-  });
 
- 
-};
+    dropdown.querySelectorAll("ul li").forEach((li) => {
+      li.addEventListener("click", (e) => {
+        e.preventDefault();
+        swap(dropdown.querySelector("ul li.active"), li);
+        dropdown.querySelector("ul li.active").classList.remove("active");
+        li.classList.add("active");
+        showDropdownLabel();
+      });
+    });
+    
 
-
+}
 
 
 
