@@ -1,4 +1,4 @@
-window.onload = () => {
+function lightBox () {
   const lightBox = document.querySelector("#lightBox");
   const liensPhotos = document.querySelectorAll(".lienMedia__media");
   const main1 = document.querySelector("main");
@@ -82,3 +82,6 @@ window.onload = () => {
     }
   });
 };
+
+
+export default lightBox;

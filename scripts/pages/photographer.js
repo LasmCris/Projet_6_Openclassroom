@@ -1,3 +1,5 @@
+import lightBox from "../utils/lightBox.js";
+
 //Mettre le code JavaScript lié à la page photographer.html
 async function getPhotographer() {
   const reponse = await fetch("./data/photographers.json");
@@ -134,6 +136,7 @@ async function init2() {
   });
 
   trier();
+  lightBox();
 }
 
 init2();
