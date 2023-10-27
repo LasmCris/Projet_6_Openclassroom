@@ -30,7 +30,10 @@ async function getPhotographer() {
   // console.log(media[0]);
 
   return { photographer: PhotographeElu, media, likesArray };
+
 }
+
+
 
 
 async function displayDataPagePhotographer(photographe, photoMedia) {
@@ -53,7 +56,12 @@ async function displayDataPagePhotographer(photographe, photoMedia) {
 async function init2() {
   // Récupère les datas des photographes
   const { photographer, media, likesArray } = await getPhotographer();
+
   displayDataPagePhotographer(photographer, media);
+
+  //Affichage nom photographe dans modale
+  const nomPhotographeModal = document.querySelector(".nomPhotographe");
+  nomPhotographeModal.textContent = photographer.name;
 
   const sectionMedia = document.querySelector(".sectionMedia");
 
@@ -140,6 +148,16 @@ async function init2() {
 }
 
 init2();
+
+//Affichage du message dans la console.
+  const btnSubmit = document.querySelector(".contact_button");
+  
+  btnSubmit.addEventListener("click", function (event) {
+    event.preventDefault(); // Empêche le comportement par défaut du bouton de soumission
+    var text = document.getElementById("message").value;
+    console.log(text);
+  });
+
 
 
 function trier() {
@@ -263,6 +281,8 @@ function trier() {
     
 
 }
+
+
 
 
 

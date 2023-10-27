@@ -42,8 +42,11 @@
       <div id="contact_modal" class="contact_modal" role="dialog" aria-hidden="true">
         <div class="modalContent">
               <header>
-                <h2>Contactez-moi</h2>
-                <h2 class="nomPhotographe"></h2>
+                <div class="divContactezEtNom">
+                  <h2 class="h2ContactezMoi">Contactez-moi</h2>
+                  <h2 class="nomPhotographe"></h2> 
+                </div>
+
                 <img class="close2" src="./assets/icons/close.svg"/>
               </header>
               
@@ -60,9 +63,10 @@
                   <input type="email" id="email" aria-labelledby="email" aria-required="true"/>
 
                   <label for="message">Message</label>
-                  <textarea rows="8" cols="40" id="message" aria-labelledby="message" aria-required="true"></textarea>
+                  <textarea id="message" aria-labelledby="message" aria-required="true"></textarea>
                 </div>
-                <button class="contact_button">Envoyer</button>
+                <input class="contact_button" type="submit"> 
+                
               </form>
         </div>
 

@@ -105,7 +105,7 @@ sectionTris.appendChild(menuTriDiv);
 
 
     // Cacher le menu au chargement initial
-    menuTriDiv.style.display = "none";
+    menuTriDiv.style.display = "block";
 
     // Ajouter un événement pour afficher / masquer le menu au clic
     trierParLink.addEventListener("click", function () {
