@@ -169,10 +169,7 @@ function trier() {
   // Je Sélectionne les éléments contenant les photos et leurs likes
   const tousMediaGenerer = document.querySelectorAll(".sectionMedia__article");
 
-  // Ajout d'un eventListener au lien
-  boutonTrisParPop.addEventListener("click", (e) => {
-    e.preventDefault;
-
+  function triParPopularite() {
     // Je Convertie la NodeList en tableau pour pouvoir trier les articles
     const arrayMediaGenerer = Array.from(tousMediaGenerer);
 
@@ -189,6 +186,20 @@ function trier() {
     arrayMediaGenerer.forEach((article) => {
       parentDesArticlePhotos.appendChild(article);
     });
+  }
+
+  // Ajout d'un eventListener au lien
+  boutonTrisParPop.addEventListener("click", (e) => {
+    e.preventDefault;
+    triParPopularite();
+  });
+
+  // Pour l'accessibilité
+  boutonTrisParPop.addEventListener("keypress", (e) => {
+    if (e.key === "Enter" || e.code === "Enter") {
+      e.preventDefault();
+      triParPopularite();
+    }
   });
 
   //TRI PAR DATE DE PUBLICATION
@@ -196,9 +207,7 @@ function trier() {
   const btnTriParDateDePub = document.querySelector(".btnTrieParDate");
   // console.log(btnTriParDateDePub);
 
-  btnTriParDateDePub.addEventListener("click", (e) => {
-    e.preventDefault;
-
+  function triParDate() {
     // Je Convertie la NodeList en tableau pour pouvoir trier les articles
     const arrayMediaGenerer = Array.from(tousMediaGenerer);
 
@@ -215,6 +224,18 @@ function trier() {
     arrayMediaGenerer.forEach((article) => {
       parentDesArticlePhotos.appendChild(article);
     });
+  }
+
+  btnTriParDateDePub.addEventListener("click", (e) => {
+    e.preventDefault;
+    triParDate();
+  });
+  // Pour l'accessibilité
+  btnTriParDateDePub.addEventListener("keypress", (e) => {
+    if (e.key === "Enter" || e.code === "Enter") {
+      e.preventDefault();
+      triParDate();
+    }
   });
 
   // TRI PAR ORDRE ALPHABETIQUE DE TITRE
@@ -222,9 +243,7 @@ function trier() {
   const btnTriDesTitreDeMedia = document.querySelector(".btnTrieParTitre");
   // console.log(btnTriDesTitreDeMedia);
 
-  btnTriDesTitreDeMedia.addEventListener("click", (e) => {
-    e.preventDefault;
-
+  function triParNom() {
     // Je Convertie la NodeList en tableau pour pouvoir trier les articles
     const arrayMediaGenerer = Array.from(tousMediaGenerer);
 
@@ -245,41 +264,58 @@ function trier() {
     arrayMediaGenerer.forEach((article) => {
       parentDesArticlePhotos.appendChild(article);
     });
+  }
+
+  btnTriDesTitreDeMedia.addEventListener("click", (e) => {
+    e.preventDefault;
+    triParNom();
+  });
+  // Pour l'accessibilité
+  btnTriDesTitreDeMedia.addEventListener("keypress", (e) => {
+    if (e.key === "Enter" || e.code === "Enter") {
+      e.preventDefault();
+      triParNom();
+    }
   });
 
   //GESTION DU TOGGLE D'AFFICHAGE DU MENU DE TRI
-    const dropdown = document.querySelector(".menuTri");
+  const dropdown = document.querySelector(".menuTri");
 
-    const dropdownSpan = dropdown.querySelector(".menuTri span");
+  const dropdownSpan = dropdown.querySelector(".menuTri span");
 
-    const showDropdownLabel = () => {
-      dropdownSpan.innerText = dropdown.querySelector("ul li.active").innerText;
-    };
+  const showDropdownLabel = () => {
+    dropdownSpan.innerText = dropdown.querySelector("ul li.active").innerText;
+  };
 
-    const swap = (node1, node2) => {
-      const afterNode2 = node2.nextElementSibling;
-      const parent = node2.parentNode;
-      node1.replaceWith(node2);
-      parent.insertBefore(node1, afterNode2);
-    };
+  const swap = (node1, node2) => {
+    const afterNode2 = node2.nextElementSibling;
+    const parent = node2.parentNode;
+    node1.replaceWith(node2);
+    parent.insertBefore(node1, afterNode2);
+  };
 
-    showDropdownLabel();
+  showDropdownLabel();
 
-    dropdown.addEventListener("click", () => {
+  dropdown.addEventListener("click", () => {
+    dropdown.classList.toggle("open");
+  });
+
+  //Je gere l'ouverture du menu avec le clavier Ainsi
+  dropdownSpan.addEventListener("keypress", (e) => {
+    if (e.key === "Enter" || e.code === "Enter") {
       dropdown.classList.toggle("open");
-    });
+    }
+  });
 
-    dropdown.querySelectorAll("ul li").forEach((li) => {
-      li.addEventListener("click", (e) => {
-        e.preventDefault();
-        swap(dropdown.querySelector("ul li.active"), li);
-        dropdown.querySelector("ul li.active").classList.remove("active");
-        li.classList.add("active");
-        showDropdownLabel();
-      });
+  dropdown.querySelectorAll("ul li").forEach((li) => {
+    li.addEventListener("click", (e) => {
+      e.preventDefault();
+      swap(dropdown.querySelector("ul li.active"), li);
+      dropdown.querySelector("ul li.active").classList.remove("active");
+      li.classList.add("active");
+      showDropdownLabel();
     });
-    
-
+  });
 }
 
 

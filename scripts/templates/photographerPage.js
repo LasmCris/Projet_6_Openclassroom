@@ -43,12 +43,27 @@ const sectionTris = document.querySelector(".sectionTris");
 // Création du lien "Trier par"
 const trierParLink = document.createElement("a");
 trierParLink.className = "trierPar";
+trierParLink.setAttribute("tabindex", "2");
 trierParLink.textContent = "Trier par:";
 sectionTris.appendChild(trierParLink);
 
 // Création de la div "menuTri"
 const menuTriDiv = document.createElement("div");
 menuTriDiv.className = "menuTri";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Création de la liste non ordonnée (ul)
 const ul = document.createElement("ul");
@@ -59,6 +74,11 @@ li1.classList.add ("active");
 const a1 = document.createElement("a");
 a1.className = "btnTriPar";
 a1.classList.add("btnTriParPopularite");
+a1.setAttribute("tabindex", "4");
+a1.setAttribute(
+  "aria-label",
+  `Appuyez sur Entrée pour trier les medias de ${name} par populatités`
+);
 a1.href = "#";
 a1.textContent = "Popularité";
 li1.appendChild(a1);
@@ -67,6 +87,11 @@ const li2 = document.createElement("li");
 const a2 = document.createElement("a");
 a2.className = "btnTriPar";
 a2.classList.add("btnTrieParDate");
+a2.setAttribute("tabindex", "5");
+a2.setAttribute(
+  "aria-label",
+  `Appuyez sur Entrée pour trier les medias de ${name} par date de publication`
+);
 a2.href = "#";
 a2.textContent = "Date";
 li2.appendChild(a2);
@@ -75,6 +100,8 @@ const li3 = document.createElement("li");
 const a3 = document.createElement("a");
 a3.className = "btnTriPar";
 a3.classList.add("btnTrieParTitre");
+a3.setAttribute("tabindex", "6");
+a3.setAttribute("aria-label", `Appuyez sur Entrée pour trier les medias de ${name} par ordre alphabetique`);
 a3.href = "#";
 a3.textContent = "Nom";
 li3.appendChild(a3);
@@ -85,11 +112,21 @@ ul.appendChild(li2);
 ul.appendChild(li3);
 
 // Ajout de la liste à la div "menuTri"
-menuTriDiv.appendChild(document.createElement("span"));
+const spanMenuTris = document.createElement("span");
+spanMenuTris.setAttribute("tabindex", "3");
+//J'indique a l'utilisateur d'appuyer sur entrer pour ouvrir le menu Dropdown
+spanMenuTris.setAttribute(
+  "aria-label",
+  "Appuyez sur Entrée pour ouvrir le menu de tri"
+);
+
+menuTriDiv.appendChild(spanMenuTris);
 menuTriDiv.appendChild(ul);
 
 // Ajout de la div "menuTri" à la section
 sectionTris.appendChild(menuTriDiv);
+
+
 
 
 
@@ -160,25 +197,30 @@ function sectionMediaTemplate (dataMedia) {
       let pathMedia = `./assets/samplePhotos/${image}`;
       MediaEnQuestion = document.createElement("img");
       MediaEnQuestion.src = pathMedia;
-      lienMedia.href = pathMedia;
+      lienMedia.href = "#";
+      lienMedia.setAttribute("tabindex", "-1");
 
       // Ajout d'un attribut ARIA pour décrire l'image
       MediaEnQuestion.setAttribute("alt", "Description de l'image");
+      MediaEnQuestion.setAttribute("tabindex", "7");
     } 
     else {
       let pathMedia = `./assets/samplePhotos/${video}`;
       MediaEnQuestion = document.createElement("video");
       BaliseSourceVideo = document.createElement("source");
       MediaEnQuestion.appendChild(BaliseSourceVideo);
-      lienMedia.href = pathMedia;
+      lienMedia.href = "#";
+      lienMedia.setAttribute("tabindex", "-1");
       BaliseSourceVideo.src = pathMedia;
       BaliseSourceVideo.type = "video/mp4";
 
       // Ajout d'un attribut ARIA pour décrire la vidéo
       MediaEnQuestion.setAttribute("aria-label", "Description de la vidéo");
+      MediaEnQuestion.setAttribute("tabindex", "7");
     }
         lienMedia.appendChild(MediaEnQuestion);
         MediaEnQuestion.classList.add ("lienMedia__media");
+        
 
     const figcaptionMedia = document.createElement ("figcaption");
     figcaptionMedia.classList.add ("figure__figCaption");

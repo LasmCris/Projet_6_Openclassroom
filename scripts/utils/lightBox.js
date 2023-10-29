@@ -65,15 +65,45 @@ function lightBox () {
   arrayPhotos.forEach((lien, index) => {
     lien.addEventListener("click", (e) => {
       e.preventDefault();
-      e.stopPropagation();
       ouvertureLightbox(index);
-      return false;
+    });
+
+    lien.addEventListener("keypress", (e) => {
+      if (e.key === "Enter" || e.code === "Enter") {
+        e.preventDefault();
+        ouvertureLightbox(index);
+      }
     });
   });
 
   prevButton.addEventListener("click", imagePrecedente);
+  prevButton.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft" || e.code === "ArrowLeft") {
+      e.preventDefault();
+      imagePrecedente();
+    }
+  });
+  
+
   nextButton.addEventListener("click", imageSuivante);
+  nextButton.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight" || e.code === "ArrowRight") {
+      e.preventDefault();
+      imageSuivante();
+    }
+  });
+
+
+
   close1.addEventListener("click", fermetureLightbox);
+  close1.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" || e.code === "Escape") {
+      e.preventDefault();
+      fermetureLightbox();
+    }
+  });
+
+
 
   // Ajout d'un écouteur d'événement pour la touche "Esc"
   document.addEventListener("keydown", function (event) {
@@ -81,6 +111,9 @@ function lightBox () {
       fermetureLightbox();
     }
   });
+
+
+  
 };
 
 

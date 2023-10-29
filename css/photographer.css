@@ -141,6 +141,7 @@ main {
 
 
 .menuTri {
+  cursor: pointer;
   position: relative;
   border-radius: 5px;
   background: #901c1c;;

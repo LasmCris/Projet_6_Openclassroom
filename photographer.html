@@ -23,7 +23,7 @@
             <div class="divInfo"> </div>
 
             <div class="divFormulaire">
-                <button class="divFormulaire__button">Contactez-moi</button>
+                <button class="divFormulaire__button" tabindex="1">Contactez-moi</button>
             </div>
 
             <div class="divPhoto"> </div>
@@ -77,11 +77,11 @@
       <!-- LIGHTBOX PHOTOS -->
       <div id="lightBox" class="lightBox">
 
-          <span class="close">&times;</span>
+          <span class="close" tabindex="3" aria-label="Appuyer sur la touche esc pour Fermer la lightbox">&times;</span>
 
-          <i class="lightBoxNext fa-solid fa-chevron-right"></i>
+          <i class="lightBoxNext fa-solid fa-chevron-right" tabindex="1" aria-label="Appuyer sur la touche flèche droite pour aller au media suivant"></i>
 
-          <i class="lightBoxPrev fa-solid fa-chevron-left"></i>
+          <i class="lightBoxPrev fa-solid fa-chevron-left" tabindex="2" aria-label="Appuyer sur la touche flèche gauche pour aller au media précedent"></i>
 
           <div class="lightBoxContent">
             <img src="" alt="">
