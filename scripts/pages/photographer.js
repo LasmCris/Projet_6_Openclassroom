@@ -274,6 +274,10 @@ function trier() {
 		e.preventDefault;
 		triParNom();
 	});
+
+
+
+  
 	// Pour l'accessibilité
 	btnTriDesTitreDeMedia.addEventListener("keypress", (e) => {
 		if (e.key === "Enter" || e.code === "Enter") {
