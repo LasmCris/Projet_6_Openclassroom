@@ -47,23 +47,23 @@
                   <h2 class="nomPhotographe"></h2> 
                 </div>
 
-                <img class="close2" src="./assets/icons/close.svg" tabindex="1"/>
+                <img class="close2" src="./assets/icons/close.svg" alt="iconne de fermeture de la Modale, Vous pouvez appuyer sur la touche de tabulation pour aller remplir les different champ du formulaire, Ou si vous le souhaitez vous pouvez appuyer sur la taouche eschape, pour sortir du forfulaire" tabindex="1"/>
               </header>
               
               <form >
                 <div role="group" aria-labelledby="coordonnees"> <!-- attribut aria 'role="group"' qui permet de caracteriser le groupement -->
                   
                   <label for="prenom">Prénom</label>
-                  <input tabindex="2" type="text" name="prenom" id="prenom" aria-labelledby="nom" aria-label="Vous pouvez ecrire votre prenom dansce champs du formulaire" aria-required="true"/>
+                  <input tabindex="2" type="text" name="prenom" id="prenom"  aria-label="Vous pouvez ecrire votre Prenom, dans ce champs du formulaire" aria-required="true"/>
 
                   <label for="nom">Nom</label>
-                  <input tabindex="3" type="text" id="nom" aria-labelledby="nom" aria-label="Vous pouvez ecrire votre prenom dans ce champs du formulaire" aria-required="true"/>
+                  <input tabindex="3" type="text" id="nom" aria-label="Vous pouvez ecrire votre Nom de famille, dans ce champs du formulaire" aria-required="true"/>
 
                   <label for="email">Email</label>
-                  <input tabindex="4" type="email" id="email" aria-labelledby="email" aria-label="Vous pouvez ecrire votre email dans ce champs du formulaire" aria-required="true"/>
+                  <input tabindex="4" type="email" id="email" aria-label="Vous pouvez ecrire votre email dans ce champs du formulaire" aria-required="true"/>
 
                   <label for="message" aria-label="Vous pouvez ecrire votre Message a destination du photographe, dans ce champs du formulaire">Message </label>
-                  <textarea tabindex="5" id="message" aria-labelledby="message" aria-required="true"></textarea>
+                  <textarea tabindex="5" id="message" aria-required="true"></textarea>
                 </div>
                 <input tabindex="6" class="contact_button" type="submit" aria-label="Vous devez appuyer sur entrer pour envoyer Votre formulaire de contact au photographe"> 
                 
@@ -74,10 +74,10 @@
 
 
 
-      <!-- LIGHTBOX PHOTOS -->aria-label="Vous vennez d'ouvrir une lightbox, qui permet de naviguer dans les medias du photographe"
-      <div id="lightBox" class="lightBox" >
+      <!-- LIGHTBOX PHOTOS -->
+      <div id="lightBox" class="lightBox" aria-label="Vous vennez d'ouvrir une lightbox, qui permet de naviguer dans les medias du photographe" >
 
-          <span class="close" tabindex="3" aria-label="Appuyer sur la touche esc pour Fermer la lightbox">&times;</span>
+          <span class="close" tabindex="3" aria-label="Vous pouvez appuyer, sur la touche de tabulation, pour allez vers l'onglet de navigation qui permet d'acceder au media preccedent, soit vous appuyer 2 fois sur la touche de tabulation pour allez au media suivant, si vous souhaitez fermer la lightbox appuyer sur la touche esc pour Fermer la lightbox">&times;</span>
 
           <i class="lightBoxNext fa-solid fa-chevron-right" tabindex="1" aria-label="Appuyer sur la touche flèche droite pour aller au media suivant"></i>
 
