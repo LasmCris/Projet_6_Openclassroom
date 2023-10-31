@@ -139,7 +139,7 @@ export function encartEtTriTemplate(dataPhotographe) {
 }
 
 export function sectionMediaTemplate(dataMedia) {
-	const {title, image, video, likes, date } =
+	const {title, image, video, likes, date, name } =
     dataMedia;
 
 	// console.log(image, video);
@@ -171,7 +171,7 @@ export function sectionMediaTemplate(dataMedia) {
 			lienMedia.setAttribute("tabindex", "-1");
 
 			// Ajout d'un attribut ARIA pour décrire l'image
-			MediaEnQuestion.setAttribute("alt", "Description de l'image");
+			MediaEnQuestion.setAttribute("alt", `vous etes sur un media du photographe, vous pouver appuyyer sur la touche entrer, pour ouvrir une lightbox, pour naviguer dans les media de ${name}`);
 			MediaEnQuestion.setAttribute("tabindex", "7");
 		} else {
 			let pathMedia = `./assets/samplePhotos/${video}`;
@@ -184,7 +184,7 @@ export function sectionMediaTemplate(dataMedia) {
 			BaliseSourceVideo.type = "video/mp4";
 
 			// Ajout d'un attribut ARIA pour décrire la vidéo
-			MediaEnQuestion.setAttribute("aria-label", "Description de la vidéo");
+			MediaEnQuestion.setAttribute("aria-label", `vous etes sur un media du photographe, vous pouver appuyyer sur la touche entrer, pour ouvrir une lightbox, pour naviguer dans les media de ${name}`);
 			MediaEnQuestion.setAttribute("tabindex", "7");
 		}
 		lienMedia.appendChild(MediaEnQuestion);
@@ -215,6 +215,7 @@ export function sectionMediaTemplate(dataMedia) {
 
 		const lienCoeur = document.createElement("a");
 		lienCoeur.classList.add("divFigcap__lienCoeur");
+		lienCoeur.setAttribute("aria-label", "Represente le nombre de likes");
 		divFig.appendChild(lienCoeur);
 
 		const iconeCoeur = document.createElement("i");

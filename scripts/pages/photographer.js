@@ -1,4 +1,6 @@
 import lightBox from "../utils/lightBox.js";
+import formulaire from "../utils/contactForm.js";
+
 import {encartEtTriTemplate, sectionMediaTemplate } from "../templates/photographerPage.js";
 
 //Mettre le code JavaScript lié à la page photographer.html
@@ -146,6 +148,7 @@ async function init2() {
 
 	trier();
 	lightBox();
+	formulaire();
 }
 
 init2();
