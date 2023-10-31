@@ -154,8 +154,16 @@ init2();
   
   btnSubmit.addEventListener("click", function (event) {
     event.preventDefault(); // Empêche le comportement par défaut du bouton de soumission
-    var text = document.getElementById("message").value;
-    console.log(text);
+    var prenomClient = document.getElementById("prenom").value;
+    var nomClient = document.getElementById("nom").value;
+    var emailClient = document.getElementById("email").value;
+    var contenuMessage = document.getElementById("message").value;
+
+
+    console.log(`PRENOM du client "${prenomClient}"`);
+    console.log(`NOM du client "${nomClient}"`);
+    console.log(`EMAIL du client "${emailClient}"`);
+    console.log(`message envoyer par le client "${contenuMessage}"`);
   });
 
 

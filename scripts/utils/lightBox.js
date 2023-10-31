@@ -1,3 +1,4 @@
+
 function lightBox () {
   const lightBox = document.querySelector("#lightBox");
   const liensPhotos = document.querySelectorAll(".lienMedia__media");
@@ -15,14 +16,55 @@ function lightBox () {
 
   //fonction d'ouverture de la lightbox avec une image donnée.
 
+
+
+
+
+  function reactivationTabindex() {
+    const btnFormulaire = document.querySelector(".divFormulaire__btn");
+    btnFormulaire.setAttribute("tabindex", "1");
+
+    const trierParLink = document.querySelector(".trierPar");
+    trierParLink.setAttribute("tabindex", "2");
+
+    const spanMenuTris = document.querySelector(".menuTri span");
+    spanMenuTris.setAttribute("tabindex", "3");
+
+    arrayPhotos.forEach((element) => {
+      element.setAttribute("tabindex", "0");
+    });
+
+    close1.setAttribute("tabindex", "0");
+    prevButton.setAttribute("tabindex", "0");
+    nextButton.setAttribute("tabindex", "0");
+  }
+
   function ouvertureLightbox(index) {
     const media = arrayPhotos[index];
+
+    const btnFormulaire = document.querySelector(".divFormulaire__btn");
+    btnFormulaire.setAttribute("tabindex", "-1");
+
+    const trierParLink = document.querySelector(".trierPar");
+    trierParLink.setAttribute("tabindex", "-1");
+
+    const spanMenuTris = document.querySelector(".menuTri span");
+    spanMenuTris.setAttribute("tabindex", "-1");
+
+    arrayPhotos.forEach((element) => {
+      element.setAttribute("tabindex", "-1");
+    });
+
+    close1.setAttribute("tabindex", "1");
+    prevButton.setAttribute("tabindex", "2");
+    nextButton.setAttribute("tabindex", "3");
 
     if (media.tagName === "IMG") {
       imageDansLightbox.src = arrayPhotos[index].src;
       imageDansLightbox.alt = arrayPhotos[index].alt;
       videoDansLightbox.style.display = "none";
       imageDansLightbox.style.display = "block";
+      
     } else if (media.tagName === "VIDEO") {
       videoDansLightbox.style.display = "block";
       imageDansLightbox.style.display = "none";
@@ -33,7 +75,12 @@ function lightBox () {
       // Charge la vidéo et lance la lecture automatique
       videoDansLightbox.load();
       videoDansLightbox.play();
+      nextButton.setAttribute("tabindex", "4");
+      const baliseVideo = document.querySelector(".lightBoxContent video");
+      baliseVideo.setAttribute("tabindex", "3");
     }
+
+    
 
     currentIndex = index;
     lightBox.classList.add("show");
@@ -43,6 +90,7 @@ function lightBox () {
   }
 
   function fermetureLightbox() {
+    reactivationTabindex();
     lightBox.classList.remove("show");
     //A la fermuture de la lightbox, il fut indique aux technologie d'assistance que
     //Que le reste de la page est desormais visible avec le code suivant
