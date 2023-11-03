@@ -1,4 +1,4 @@
-export function photographerTemplate (data) {
+export default function photographerTemplate (data) {
 	const { name, portrait, country, city, tagline, price, id } = data;
 
 	const picture = `assets/photographers/${portrait}`;
@@ -10,9 +10,13 @@ export function photographerTemplate (data) {
 		figure.classList.add("figurePhotographe");
 		article.appendChild(figure);
 		const lienPhoto = document.createElement("a");
+
+
 		lienPhoto.setAttribute("href", `./photographer.html?id=${id}`);
 		lienPhoto.classList.add("lienPhotoProfil");
 		const figcaption = document.createElement("figcaption");
+
+
 		figcaption.classList.add("figcaptionPhotographe");
 		figure.appendChild(lienPhoto);
 		figure.appendChild(figcaption);
@@ -29,6 +33,12 @@ export function photographerTemplate (data) {
 		// Ajout d'un attribut ARIA pour donner un nom au lien
 		lienPhoto.setAttribute("aria-label", `Voir le profil de ${name}`);
 
+
+
+
+
+
+		
 		const h2Name = document.createElement("h2");
 		h2Name.textContent = name;
 		h2Name.classList.add("nomPhotographe");
